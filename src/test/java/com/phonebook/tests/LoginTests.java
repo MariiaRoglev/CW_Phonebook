@@ -1,6 +1,6 @@
 package com.phonebook.tests;
 
-import org.openqa.selenium.By;
+import com.phonebook.models.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,20 +9,19 @@ public class LoginTests extends TestBase
     @Test
     public void loginPositiveTests()
     {
-        click(By.cssSelector("[href='/login']"));
+        app.getUser().clickOnLoginLink();
+        app.getUser().enterEmailAndPWD(new User().setMail("kashamasha@gmail.com").setPwd("QwertyQwerty1!"));
+        app.getUser().clickOnLoginButton();
+        Assert.assertTrue(app.getUser().isSignOutDisplayed());
+    }
 
-        //enter email
-        type(By.name("email"), "kashamasha@gmail.com");
-
-        //enter pwd
-        type(By.name("password"), "QwertyQwerty1!");
-
-        //click on Login button
-        click(By.name("login"));
-
-        //verify SignOut button is displayed
-        Assert.assertTrue(isElementPresent(By.xpath("//button[.='Sign Out']")));
-
+    @Test //Ctrl+D = Duplicate test
+    public void loginNegativeTestsEmptyEmailField()
+    {
+        app.getUser().clickOnLoginLink();
+        app.getUser().enterEmailAndPWD(new User().setPwd("QwertyQwerty1!"));
+        app.getUser().clickOnLoginButton();
+        Assert.assertTrue(app.getUser().isAlertDisplayed());
     }
 
 

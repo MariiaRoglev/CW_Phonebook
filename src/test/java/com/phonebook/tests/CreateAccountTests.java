@@ -1,46 +1,35 @@
 package com.phonebook.tests;
 
 
-import org.openqa.selenium.By;
+import com.phonebook.models.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
-public class CreateAccountTests extends TestBase {
-    @Test
-    public void newUserIsRegistered() {
-        //click on Login button
-        click(By.cssSelector("[href='/login']"));
+public class CreateAccountTests extends TestBase
 
-        //enter email
-        //driver.findElement(By.cssSelector("[placeholder='Email']")).click();
-        type(By.name("email"), "kashamasha@gmail.com");
+{
+    SoftAssert softAssert=new SoftAssert();//inicialization
 
-        //enter pwd
-        type(By.name("password"), "QwertyQwerty1!");
+    @Test(enabled = false)
 
-        //click on Registration button
-        click(By.name("registration"));
-
-        //verify SignOut button is displayed
-        Assert.assertTrue(isElementPresent(By.xpath("//button[.='Sign Out']")));
+    public void newUserIsRegistered()
+    {
+        app.getUser().clickOnLoginLink();
+        app.getUser().enterEmailAndPWD(new User().setMail("kashamasha@gmail.com").setPwd("QwertyQwerty1!"));
+        app.getUser().clickOnRegButton();
+        Assert.assertTrue(app.getUser().isSignOutDisplayed());
     }
 
-    @Test (enabled = false)
+    @Test
     public void existedUserIsRegistered()
     {
-        click(By.cssSelector("[href='/login']"));
-
-        type(By.name("email"), "kashamasha@gmail.com");
-
-        //enter pwd
-        type(By.name("password"), "QwertyQwerty1!");
-
-        //click on Registration button
-        click(By.name("registration"));
-
-        //verify SignOut button does not displayed. Alert (display is blocked) displayed
-    Assert.assertTrue(isAlertDisplayed());
-
+        app.getUser().clickOnLoginLink();
+        app.getUser().enterEmailAndPWD(new User().setMail("kashamasha@gmail.com").setPwd("QwertyQwerty1!"));
+        app.getUser().clickOnRegButton();
+        softAssert.assertTrue(app.getUser().isAlertDisplayed()); //First Alert
+        softAssert.assertTrue(app.getUser().isErrorMessagePresent()); //Second Alert
+        softAssert.assertAll(); //must for soft Assert!
 }
 
 

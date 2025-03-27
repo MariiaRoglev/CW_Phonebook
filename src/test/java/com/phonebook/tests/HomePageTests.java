@@ -11,7 +11,7 @@ public class HomePageTests extends TestBase //extends TestBase -> extent for cla
     {
         //driver.findElement(By.cssSelector("div:nth-child(2)>div>div>h1"));
         //System.out.println("Home_Component "+isPhoneComponentPresent());
-        Assert.assertTrue(isPhoneComponentPresent());
+        Assert.assertTrue(app.getHome().isPhoneComponentPresent());
     }
 
 
