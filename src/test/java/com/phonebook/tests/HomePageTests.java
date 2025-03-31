@@ -1,10 +1,19 @@
 package com.phonebook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class HomePageTests extends TestBase //extends TestBase -> extent for class TestBase
 {
+@BeforeMethod
+public void ensurePrecondition()
+{
+    if(!app.getHome().isPhoneComponentPresent())
+    {
+        app.getHome().clickOnHomeLink();
+    }
+}
 
     @Test
     public void isHomeComponentPresentTest() //for calling the method
@@ -14,15 +23,7 @@ public class HomePageTests extends TestBase //extends TestBase -> extent for cla
         Assert.assertTrue(app.getHome().isPhoneComponentPresent());
     }
 
-
 //assert-need to remind
 // no need to print in tests
-
-
-
-
-
-
-
 
 }

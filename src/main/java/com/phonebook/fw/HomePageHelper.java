@@ -14,4 +14,9 @@ public class HomePageHelper extends BaseHelper
     {
         return isElementPresent(By.cssSelector("div:nth-child(2)>div>div>h1")); //if one element will be found. this method is not universal
     }
+
+    public void clickOnHomeLink()
+    {
+        click(By.cssSelector("[href='/home']"));
+    }
 }

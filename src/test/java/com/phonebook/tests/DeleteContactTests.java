@@ -17,7 +17,13 @@ public class DeleteContactTests extends TestBase {
     //verify that the contact ids deleted (by size)
 
     @BeforeMethod
-    public void precondition() {
+    public void precondition()
+    {
+        if(!app.getUser().isLoginLinkPresent())
+        {
+            app.getUser().clickOnSignOutBTN();
+        }
+
         app.getUser().clickOnLoginLink();
         app.getUser().enterEmailAndPWD(new User().setMail("kashamasha@gmail.com").setPwd("QwertyQwerty1!"));
         app.getUser().clickOnLoginButton();
@@ -25,6 +31,8 @@ public class DeleteContactTests extends TestBase {
         app.getContact().clickOnAddLink();
         app.getContact().fillInAllFields(new Contact().setName("Pasha").setLastName("Petrov").setPhone("1234567890").setEmail("Petrov@gmail.com").setAddress("Israel,Haifa").setDescription("qazwsx"));
         app.getContact().clickOnSaveBTN();
+
+        Assert.assertTrue(app.getContact().isContactAdded("Pasha"));
     }
 
     @Test
