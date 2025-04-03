@@ -26,6 +26,7 @@ public class ApplicationManager
         {
           driver = new ChromeDriver(); 
         }
+
 //        else if(browser.equalsIgnoreCase("firefox"))
 //        {
 //            driver.new FirefoxDriver();
