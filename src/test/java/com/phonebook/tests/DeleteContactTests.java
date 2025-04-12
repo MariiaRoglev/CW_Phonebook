@@ -1,5 +1,7 @@
 package com.phonebook.tests;
 
+import com.phonebook.data.ContactData;
+import com.phonebook.data.UserData;
 import com.phonebook.models.Contact;
 import com.phonebook.models.User;
 import org.openqa.selenium.By;
@@ -25,14 +27,15 @@ public class DeleteContactTests extends TestBase {
         }
 
         app.getUser().clickOnLoginLink();
-        app.getUser().enterEmailAndPWD(new User().setMail("kashamasha@gmail.com").setPwd("QwertyQwerty1!"));
+        Assert.assertTrue(app.getContact().isContactAdded(ContactData.Name));
+        app.getUser().enterEmailAndPWD(new User().setMail(UserData.EMAIL).setPwd(UserData.PASSWORD));
         app.getUser().clickOnLoginButton();
 
         app.getContact().clickOnAddLink();
-        app.getContact().fillInAllFields(new Contact().setName("Pasha").setLastName("Petrov").setPhone("1234567890").setEmail("Petrov@gmail.com").setAddress("Israel,Haifa").setDescription("qazwsx"));
+        app.getContact().fillInAllFields(new Contact().setName(ContactData.Name).setLastName(ContactData.LastName).setPhone(ContactData.Phone).setEmail(ContactData.Email).setAddress(ContactData.Address).setDescription(ContactData.Description));
         app.getContact().clickOnSaveBTN();
 
-        Assert.assertTrue(app.getContact().isContactAdded("Pasha"));
+        Assert.assertTrue(app.getContact().isContactAdded(ContactData.Name));
     }
 
     @Test

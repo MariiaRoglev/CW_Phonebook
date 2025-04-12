@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeSuite;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 public class TestBase
 {
@@ -32,9 +33,9 @@ public class TestBase
     }
 
     @BeforeMethod
-    public void startTest(Method method)
+    public void startTest(Method method,Object[]p)
     {
-        logger.info("Start test" +" " +method.getName());
+        logger.info("Start test" +" " +method.getName()+ Arrays.asList(p));
     }
 
     @AfterMethod

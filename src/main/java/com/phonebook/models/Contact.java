@@ -47,7 +47,6 @@ public class Contact
         return this;
     }
 
-
     //GETTERS
 
     public String getName()
@@ -55,6 +54,17 @@ public class Contact
         return name;
     }
     public String getLastName() {return lastName;}
+
+
+
+    @Override//Generate to string-->to generate different names and phones and to know with which data test fails in logs
+    public String toString() {
+        return "Contact{" +
+                "name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
+
     public String getPhone() {
         return phone;
     }

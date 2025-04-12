@@ -1,12 +1,13 @@
 package com.phonebook.fw;
 
-import org.openqa.selenium.WebDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
+
 
 import java.time.Duration;
 
-public class ApplicationManager
-{
+public class ApplicationManager {
     String browser;
     WebDriver driver;
 
@@ -14,17 +15,16 @@ public class ApplicationManager
     ContactHelper contact;
     HomePageHelper home;
 
-    public ApplicationManager(String browser)
-    {
-        this.browser=browser;
+    public ApplicationManager(String browser) {
+        this.browser = browser;
 
     }
 
-    public void init()
-    {
-        if(browser.equalsIgnoreCase("chrome"))
+    public void init() {
+        if (browser.equalsIgnoreCase("chrome"))
         {
-          driver = new ChromeDriver(); 
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
         }
 
 //        else if(browser.equalsIgnoreCase("firefox"))
@@ -37,39 +37,31 @@ public class ApplicationManager
 //        }
 
 
-
-
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get("https://telranedu.web.app/home");
 
-        user=new UserHelper(driver);
-        contact=new ContactHelper(driver);
-        home=new HomePageHelper(driver);
+        user = new UserHelper(driver);
+        contact = new ContactHelper(driver);
+        home = new HomePageHelper(driver);
     }
 
-    public void stop()
-    {
+    public void stop() {
         driver.quit();
     }
 
 
-    public UserHelper getUser()
-    {
+    public UserHelper getUser() {
         return user;
     }
 
-    public ContactHelper getContact()
-    {
+    public ContactHelper getContact() {
         return contact;
     }
 
-    public HomePageHelper getHome()
-    {
+    public HomePageHelper getHome() {
         return home;
     }
-
-
 
 
 }
