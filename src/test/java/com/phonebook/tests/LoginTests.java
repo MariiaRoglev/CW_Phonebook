@@ -21,6 +21,7 @@ public class LoginTests extends TestBase
     @Test(priority = 1)
     public void loginPositiveTests()
     {
+        logger.info("Login with Data-->"+"*****"+UserData.PASSWORD);
         app.getUser().clickOnLoginLink();
         app.getUser().enterEmailAndPWD(new User().setMail(UserData.EMAIL).setPwd(UserData.PASSWORD));
         app.getUser().clickOnLoginButton();
@@ -31,7 +32,7 @@ public class LoginTests extends TestBase
     public void loginNegativeTestsEmptyEmailField()
     {
         app.getUser().clickOnLoginLink();
-        app.getUser().enterEmailAndPWD(new User().setPwd(UserData.PASSWORD));
+        app.getUser().enterEmailAndPWD(new User().setMail(UserData.EMAIL).setPwd(UserData.PASSWORD));
         app.getUser().clickOnLoginButton();
         Assert.assertTrue(app.getUser().isAlertDisplayed());
     }
