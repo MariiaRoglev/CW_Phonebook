@@ -28,11 +28,11 @@ public class LoginTests extends TestBase
         Assert.assertTrue(app.getUser().isSignOutDisplayed());
     }
 
-    @Test(priority = 2) //Ctrl+D = Duplicate test
+    @Test //Ctrl+D = Duplicate test
     public void loginNegativeTestsEmptyEmailField()
     {
         app.getUser().clickOnLoginLink();
-        app.getUser().enterEmailAndPWD(new User().setMail(UserData.EMAIL).setPwd(UserData.PASSWORD));
+        app.getUser().enterEmailAndPWD(new User().setPwd(UserData.PASSWORD));
         app.getUser().clickOnLoginButton();
         Assert.assertTrue(app.getUser().isAlertDisplayed());
     }

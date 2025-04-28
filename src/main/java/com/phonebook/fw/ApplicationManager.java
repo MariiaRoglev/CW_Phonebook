@@ -32,22 +32,21 @@ public class ApplicationManager {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
             logger.info("Test starts in Chrome browser"); //also can write it for another browser
+
         }
 
         WebDriverListener listener = new MyListener();
         driver = new EventFiringDecorator<>(listener).decorate(driver);
 
 
-
-
-//        else if(browser.equalsIgnoreCase("firefox"))FOR ANOTHER BROWSER
+//        else if(browser.equalsIgnoreCase("firefox"))//FOR ANOTHER BROWSER
 //        {
 //            driver.new FirefoxDriver();
 //        }
-//        else if(browser.equalsIgnoreCase("edge"))FOR ANOTHER BROWSER
+//        else if(browser.equalsIgnoreCase("edge"))//FOR ANOTHER BROWSER
 //        {
 //            driver.new EdgeDriver();
-//        }
+//       }
 
 
         driver.manage().window().maximize();

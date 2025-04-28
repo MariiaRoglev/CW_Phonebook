@@ -11,7 +11,7 @@
             </class>
             <class name="com.phonebook.tests.CreateAccountTests">
                 <methods>
-                    <include name=".*Negative.*">
+                    <include name=".*existed.*">
                     </include>
                 </methods>
             </class>
